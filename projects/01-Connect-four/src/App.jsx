@@ -1,33 +1,49 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import { useState } from 'react'
+
+const Square = ({children}) => {
+  return(
+    <div>
+      {children}
+    </div>
+  )
+}
+
+const Arrow = ({index, updateBoard}) => {
+  const handleClick = ({index}) => {
+    console.log({index})
+  }
+  return(
+    <img src="public\arrow.png" onClick={handleClick}/>
+  )
+}
+
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const [board, setBoard] = useState(Array(42).fill(null))
+  const arrows = Array(7).fill(null)
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <header>
+        <h1>Connect 4</h1>
+
+      </header>
+      <section className='arrows'>
+        {arrows.map((_, index) =>{
+          return(
+            <Arrow key={index} />
+          )
+        })}
+      </section>
+      <section className="board">
+        {board.map((_, index) =>{
+          return(
+            <Square key={index} index={index}/>
+          )
+        })}
+      </section>
     </>
   )
 }
