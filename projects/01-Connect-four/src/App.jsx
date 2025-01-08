@@ -1,37 +1,9 @@
 import './App.css'
 import { useState } from 'react'
-
-const Square = ({children}) => {
-  return(
-    <div>
-      {children}
-    </div>
-  )
-}
-
-const Arrow = ({index, updateBoard}) => {
-  const handleClick = () => {
-    updateBoard({index})
-  }
-  return(
-    <img src="public\arrow.png" onClick={handleClick} className='arrow'/>
-  )
-}
-
-const TURNS = {
-  a: "🔴",
-  b: "🔵",
-};
-
+import { Arrow } from '/components/Arrow'
+import { Square } from '/components/Square';
 
 const checkWinner = (newBoard) => {
-  const winningCombinations = [
-    { step: 1, limit: 7 },
-    { step: 7, limit: 42 },
-    { step: 6, limit: 42 },
-    { step: 8, limit: 42 }, 
-  ];
-
   for (let i = 0; i < 42; i++) {
     if (!newBoard[i]) continue
 
